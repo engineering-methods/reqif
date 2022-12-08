@@ -9,6 +9,7 @@ from reqif.models.reqif_data_type import (
     ReqIFDataTypeDefinitionInteger,
     ReqIFEnumValue,
     ReqIFDataTypeDefinitionXHTML,
+    ReqIFDataTypeDefinitionDate,
 )
 
 
@@ -21,6 +22,7 @@ class DataTypeParser:
         ReqIFDataTypeDefinitionInteger,
         ReqIFDataTypeDefinitionEnumeration,
         ReqIFDataTypeDefinitionXHTML,
+        ReqIFDataTypeDefinitionDate,
     ]:
         assert "DATATYPE-DEFINITION-" in data_type_xml.tag, f"{data_type_xml}"
 
@@ -141,6 +143,16 @@ class DataTypeParser:
                 last_change=last_change,
                 long_name=long_name,
                 max_length=None,
+            )
+
+
+        # added by DK
+        if data_type_xml.tag == "DATATYPE-DEFINITION-DATE":
+            return ReqIFDataTypeDefinitionDate(
+                description=description,
+                identifier=identifier,
+                last_change=last_change,
+                long_name=long_name,
             )
 
         raise NotImplementedError(etree.tostring(data_type_xml))

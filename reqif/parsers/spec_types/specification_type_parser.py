@@ -30,7 +30,9 @@ class SpecificationTypeParser:
         try:
             spec_type_long_name = xml_attributes["LONG-NAME"]
         except Exception:
-            raise NotImplementedError from None
+            # raise NotImplementedError from None
+            # changed by DK
+            spec_type_long_name = ""
 
         xml_spec_attributes = specification_type_xml.find("SPEC-ATTRIBUTES")
         attribute_definitions: Optional[List[SpecAttributeDefinition]] = None
@@ -119,6 +121,21 @@ class SpecificationTypeParser:
                         raise NotImplementedError(
                             attribute_definition
                         ) from exception
+
+                # added by DK
+                elif attribute_definition.tag == "ATTRIBUTE-DEFINITION-DATE":
+                    attribute_type = SpecObjectAttributeType.DATE
+                    try:
+                        datatype_definition = (
+                            attribute_definition.find("TYPE")
+                            .find("DATATYPE-DEFINITION-DATE-REF")
+                            .text
+                        )
+                    except Exception as exception:
+                        raise NotImplementedError(
+                            attribute_definition
+                        ) from exception
+
                 else:
                     raise NotImplementedError(attribute_definition) from None
                 attribute_definition = SpecAttributeDefinition(

@@ -7,6 +7,8 @@ class SpecObjectAttributeType(Enum):
     INTEGER = 3
     BOOLEAN = 4
     XHTML = 5
+    # added by DK
+    DATE = 6
 
     def get_spec_type_tag(self):
         if self == SpecObjectAttributeType.STRING:
@@ -19,6 +21,9 @@ class SpecObjectAttributeType(Enum):
             return "ATTRIBUTE-DEFINITION-XHTML"
         if self == SpecObjectAttributeType.ENUMERATION:
             return "ATTRIBUTE-DEFINITION-ENUMERATION"
+        # added by DK
+        if self == SpecObjectAttributeType.DATE:
+            return "ATTRIBUTE-DEFINITION-DATE"            
         raise NotImplementedError(self) from None
 
     def get_definition_tag(self):

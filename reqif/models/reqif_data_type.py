@@ -31,6 +31,20 @@ class ReqIFDataTypeDefinitionString:
             max_length=None,
         )
 
+# added by DK
+class ReqIFDataTypeDefinitionDate:
+    def __init__(
+        self,
+        description: Optional[str],
+        identifier: str,
+        last_change: Optional[str],
+        long_name: str,
+    ):
+        self.description: Optional[str] = description
+        self.identifier: str = identifier
+        self.last_change: Optional[str] = last_change
+        self.long_name: str = long_name
+
 
 class ReqIFDataTypeDefinitionInteger:
     def __init__(

@@ -142,6 +142,21 @@ class SpecObjectParser:
                     definition_ref=attribute_definition_ref,
                     value=attribute_value,
                 )
+            # added by DK
+            elif attribute_xml.tag == "ATTRIBUTE-VALUE-DATE":
+                attribute_value = attribute_xml.attrib["THE-VALUE"]
+
+                attribute_definition_ref = (
+                    attribute_xml.find("DEFINITION")
+                    .find("ATTRIBUTE-DEFINITION-DATE-REF")
+                    .text
+                )
+                attribute = SpecObjectAttribute(
+                    xml_node=attribute_xml,
+                    attribute_type=SpecObjectAttributeType.DATE,
+                    definition_ref=attribute_definition_ref,
+                    value=attribute_value,
+                )  
             elif attribute_xml.tag == "ATTRIBUTE-VALUE-XHTML":
                 the_value = attribute_xml.find("THE-VALUE")
                 # TODO: This does not work:
