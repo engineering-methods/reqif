@@ -3,6 +3,7 @@
 ReqIF is a Python library for working with ReqIF format.
 
 **The project is under construction.**
+**updated by :em AG **
 
 ## Supported features
 
